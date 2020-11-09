@@ -17,7 +17,3 @@ npx ts-inquisition "src/**"
 - spanish inquisition. Nobody expects spanish inquisition.
 
 all other TS errors will be expected and silenced.
-
-## TODO
-
-solve JSX elements
