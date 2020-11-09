@@ -1,6 +1,6 @@
 {
   "name": "ts-inquisition",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "expect all type errors, except spanish inquisition. Nobody expects spanish inqusition.",
   "main": "build/main/ts-inquisition.js",
   "bin": "build/main/bin/index.js",
@@ -102,9 +102,6 @@
     "commitizen": {
       "path": "cz-conventional-changelog"
     }
-  },
-  "prettier": {
-    "singleQuote": true
   },
   "nyc": {
     "extends": "@istanbuljs/nyc-config-typescript",

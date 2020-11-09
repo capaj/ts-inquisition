@@ -1,11 +1,11 @@
-import React from 'react';
+import React from 'react'
 
-import badImport from './fileDOesNotExits';
+import badImport from './fileDOesNotExits'
 
-console.log(badImport);
+console.log(badImport)
 export const Sample: React.FC<{ a: number }> = (props) => {
-  return <div>{props.foo + props.bar}</div>;
-};
+  return <div>{props.foo + props.bar}</div>
+}
 
 export const Sample2: React.FC<{ a: number }> = (props) => {
   return (
@@ -14,5 +14,5 @@ export const Sample2: React.FC<{ a: number }> = (props) => {
         {props.foo1 + props.bar1 + props.foo2 + props.bar2}
       </span>
     </div>
-  );
-};
+  )
+}
