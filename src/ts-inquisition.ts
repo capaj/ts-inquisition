@@ -3,6 +3,8 @@ import json5 from 'json5';
 import globby from 'globby';
 import _, { uniq } from 'lodash';
 import os from 'os';
+// @ts-ignore
+import unpad from 'unpad';
 import path from 'path';
 import ts, { CompilerOptions } from 'typescript';
 import { readFileSync, writeFileSync } from 'fs';
@@ -54,7 +56,11 @@ function addExpectErrors(fileNames: string[], options: CompilerOptions) {
       const { line } = diagnostic.file.getLineAndCharacterOfPosition(
         diagnostic.start as number
       );
-      errorLinesByFiles[fileName].push(line);
+
+      if (diagnostic.code !== 2307) {
+        // bad import, let's keep those
+        errorLinesByFiles[fileName].push(line);
+      }
     } else {
       console.log(
         `${ts.flattenDiagnosticMessageText(diagnostic.messageText, '\n')}`
@@ -67,12 +73,48 @@ function addExpectErrors(fileNames: string[], options: CompilerOptions) {
     const badLinesDeduped = uniq(badLines);
     let lineShift = 0;
     badLinesDeduped.forEach((line) => {
+      // console.log(`line ${line}`);
       const indexOfTheLine = nthIndex(fileContent, os.EOL, line + lineShift);
-      fileContent = insertAt(
-        fileContent,
-        `${os.EOL}// @ts-expect-error`,
-        indexOfTheLine
+      const currentLine = fileContent.substring(
+        indexOfTheLine,
+        nthIndex(fileContent, os.EOL, line + lineShift + 1)
       );
+      const unpaddedCurrentLine = unpad(currentLine);
+
+      if (file.endsWith('tsx')) {
+        const prevChar = fileContent[indexOfTheLine - 1];
+
+        // console.log('addExpectErrors -> prevChar', prevChar);
+        // console.log('addExpectErrors -> currentLine', currentLine);
+
+        if (prevChar === '>' && unpaddedCurrentLine.startsWith('<')) {
+          // this is JSX formatted with prettier
+          fileContent = insertAt(
+            fileContent,
+            `${os.EOL}${'  {/* @ts-expect-error */}'.padStart(
+              currentLine.length - unpaddedCurrentLine.length
+            )}`,
+            indexOfTheLine
+          );
+        } else {
+          fileContent = insertAt(
+            fileContent,
+            `${os.EOL}${'  // @ts-expect-error'.padStart(
+              currentLine.length - unpaddedCurrentLine.length
+            )}`,
+            indexOfTheLine
+          );
+        }
+      } else {
+        fileContent = insertAt(
+          fileContent,
+          `${os.EOL}${'  // @ts-expect-error'.padStart(
+            currentLine.length - unpaddedCurrentLine.length
+          )}`,
+          indexOfTheLine
+        );
+      }
+
       lineShift += 1;
     });
     writeFileSync(file, fileContent, 'utf8');
