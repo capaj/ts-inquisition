@@ -64,10 +64,11 @@ function addExpectErrors(
         diagnostic.start as number
       )
 
-      if (diagnostic.code !== 2307) {
+      if ([2724, 2307].includes(diagnostic.code)) {
         // bad import, let's keep those
-        errorLinesByFiles[fileName].push(line)
+        return
       }
+      errorLinesByFiles[fileName].push(line)
     } else {
       console.log(
         `${ts.flattenDiagnosticMessageText(diagnostic.messageText, '\n')}`
