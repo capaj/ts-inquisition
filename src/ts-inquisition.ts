@@ -3,7 +3,7 @@ import json5 from 'json5'
 import globby from 'globby'
 import _, { uniq } from 'lodash'
 import os from 'os'
-// @ts-ignore
+// @ts-expect-error
 import unpad from 'unpad'
 import path from 'path'
 import ts, { CompilerOptions } from 'typescript'
@@ -18,8 +18,8 @@ compilerOptions.noEmit = true
 compilerOptions.lib = ['lib.dom.d.ts', `${process.cwd()}/types/custom.d.ts`]
 
 function nthIndex(str: string, pat: string, n: number) {
-  var L = str.length,
-    i = -1
+  const L = str.length
+  let i = -1
   while (n-- && i++ < L) {
     i = str.indexOf(pat, i)
     if (i < 0) break
