@@ -17,3 +17,7 @@ npx ts-inquisition "src/**"
 - spanish inquisition. Nobody expects spanish inquisition.
 
 all other TS errors will be expected and silenced.
+
+## Why is it called ts-inquisition
+
+It's a reference to https://www.youtube.com/watch?v=Cj8n4MfhjUc
