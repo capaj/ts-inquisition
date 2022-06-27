@@ -6,7 +6,7 @@
   "bin": "build/main/bin/index.js",
   "typings": "build/main/ts-inquisition.d.ts",
   "module": "build/module/ts-inquisition.js",
-  "repository": "https://github.com/capaj/ts-terminator2",
+  "repository": "https://github.com/capaj/ts-inquisition",
   "license": "MIT",
   "keywords": [],
   "scripts": {

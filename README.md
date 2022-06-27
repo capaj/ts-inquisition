@@ -1,6 +1,10 @@
 # ts-inquisition
 
-expect all the type errors. A simple CLI util to mark all your current TS errors as expected. Useful when you wan to start failing your builds on a new type error while keeping the old ones as is.
+expect all the type errors. A simple CLI util to mark all your current TS errors as expected. Useful when
+
+- you wan to start failing your builds on a new type error while keeping the old ones as is.
+- you are converting JS project into TS. With ts-inquisition you can basically do a project of any size in like 10 minutes if you are ok with having the current TS errors silenced.
+
 Supports `ts` and `tsx` files.
 
 ## Usage
