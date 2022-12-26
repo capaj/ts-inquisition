@@ -1,6 +1,6 @@
 {
   "name": "ts-inquisition",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "expect all type errors, except spanish inquisition. Nobody expects spanish inqusition.",
   "main": "build/main/ts-inquisition.js",
   "bin": "build/main/bin/index.js",
@@ -8,7 +8,7 @@
   "module": "build/module/ts-inquisition.js",
   "repository": "https://github.com/capaj/ts-inquisition",
   "license": "MIT",
-  "keywords": [],
+  "keywords": ["typescript", "ci", "green", "typesafe", "typeerror"],
   "scripts": {
     "build": "run-p build:*",
     "build:main": "tsc -p tsconfig.json",
