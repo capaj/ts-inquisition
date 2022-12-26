@@ -9,7 +9,9 @@ Supports `ts` and `tsx` files.
 
 ## Usage
 
-Note that it is only tested on code bases formatted with prettier. It won't work correctly on code bases with any other formatting.
+
+> **Warning**
+> Note that it is only tested on code bases formatted with prettier. It won't work correctly on code bases with any other formatting.
 
 ```
 npx ts-inquisition "src/**"
