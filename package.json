@@ -8,7 +8,7 @@
   "module": "build/module/ts-inquisition.js",
   "repository": "https://github.com/capaj/ts-inquisition",
   "license": "MIT",
-  "keywords": ["typescript", "ci", "green", "typesafe", "typeerror"],
+  "keywords": ["typescript", "ci", "green", "typesafe", "typeerror", "code", "migration", "js-to-ts", "expect", "all-errors"],
   "scripts": {
     "build": "run-p build:*",
     "build:main": "tsc -p tsconfig.json",
